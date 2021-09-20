@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/itemSelectionFragment">
+
+    <fragment
+        android:id="@+id/itemSelectionFragment"
+        android:name="com.example.leaguecraft.ItemSelectionFragment"
+        android:label="fragment_item_selection"
+        tools:layout="@layout/fragment_item_selection" >
+        <action
+            android:id="@+id/action_itemSelectionFragment_to_itemSelectionList"
+            app:destination="@id/itemSelectionList" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemSelectionList"
+        android:name="com.example.leaguecraft.ItemSelectionList"
+        android:label="fragment_item_selection_list"
+        tools:layout="@layout/fragment_item_selection_list" />
+</navigation>
