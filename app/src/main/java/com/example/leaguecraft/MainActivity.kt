@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         val get_started = findViewById<Button>(R.id.homeButton)
 
         get_started.setOnClickListener {
-            val i = Intent(this, ItemBuild::class.java)
+            val i = Intent(this, ItemBuildActivity::class.java)
             this.startActivity(i)
         }
     }

@@ -45,7 +45,6 @@ class ItemSelectionList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        prepData(this.context)
         // NOTE: findViewByID in fragments
         // https://stackoverflow.com/questions/46419171/how-to-fetch-resource-id-in-fragment-using-kotlin-in-android
         val recycleView = view.findViewById<RecyclerView>(R.id.itemSelectionRecycler)
@@ -68,7 +67,8 @@ private fun prepData(c: Context?) {
         // NOTE: Using built-in JSONobject for parsing
         // https://johncodeos.com/how-to-parse-json-in-android-using-kotlin/
         val jObj = JSONObject(jsonString)
-        println(jObj.get("type"))
-    }
+        val items = JSONObject(jObj.get("data").toString())
+        println(items.get("1001"))
 
+    }
 }

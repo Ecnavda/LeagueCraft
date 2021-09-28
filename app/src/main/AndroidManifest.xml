@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LeagueCraft">
         <activity
-            android:name=".ItemBuild"
+            android:name=".ItemBuildActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
