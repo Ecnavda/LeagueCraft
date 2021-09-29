@@ -11,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,7 +53,6 @@ class ItemSelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         var viewArr = ArrayList<View>()
         viewArr.add(view.findViewById(R.id.itemBuildItem1))
         viewArr.add(view.findViewById(R.id.itemBuildItem2))
@@ -60,6 +62,7 @@ class ItemSelectionFragment : Fragment() {
         viewArr.add(view.findViewById(R.id.itemBuildItem6))
 
         makeClickable(viewArr, this)
+
     }
 }
 

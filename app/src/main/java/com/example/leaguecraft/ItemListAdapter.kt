@@ -9,15 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 //NOTE: Android recyclerview docs
 //
-class ItemListAdapter : RecyclerView.Adapter<ItemListAdapter.ItemViewHolder>() {
+class ItemListAdapter(private val data: ArrayList<Item>) : RecyclerView.Adapter<ItemListAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView : TextView = view.findViewById(R.id.itemName)
         val imageView: ImageView = view.findViewById(R.id.itemImage)
-
-        init {
-
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -27,11 +23,11 @@ class ItemListAdapter : RecyclerView.Adapter<ItemListAdapter.ItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.textView.text = "Replace with item name"
+        holder.textView.text = data[position].name
 
     }
 
     override fun getItemCount(): Int {
-        return 8
+        return data.size
     }
 }

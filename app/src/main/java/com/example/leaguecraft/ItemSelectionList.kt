@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
 
@@ -21,6 +22,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ItemSelectionList : Fragment() {
+    val itemViewModel by activityViewModels<ItemJSONViewModel>()
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -48,7 +51,7 @@ class ItemSelectionList : Fragment() {
         // NOTE: findViewByID in fragments
         // https://stackoverflow.com/questions/46419171/how-to-fetch-resource-id-in-fragment-using-kotlin-in-android
         val recycleView = view.findViewById<RecyclerView>(R.id.itemSelectionRecycler)
-        val adapter = ItemListAdapter()
+        val adapter = ItemListAdapter(itemViewModel.data.items)
 
         recycleView.adapter = adapter
     }
@@ -72,3 +75,4 @@ private fun prepData(c: Context?) {
 
     }
 }
+

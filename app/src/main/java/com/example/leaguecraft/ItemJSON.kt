@@ -9,25 +9,22 @@ class ItemJSON(JSONStringFile: String) {
     // data holds all the items and info
     lateinit var type: String
     lateinit var version: String
-    lateinit var items: ArrayList<Item>
+    val items = ArrayList<Item>()
 
     init {
+
         val initialParsing = JSONObject(JSONStringFile)
         type = initialParsing.getString("type")
         version = initialParsing.getString("version")
-        val data = initialParsing.getString("data")
-        val itemNumbers = JSONObject(data).names()
-        var counter = 0
-        println(itemNumbers)
-        println(JSONObject(data).keys())
-        JSONObject(data).keys().forEach {
-            //val tempJSON = JSONObject(it)
-            println(it)
-        }
-            /*
+        val data = initialParsing.getJSONObject("data")
+        val itemNumbers = data.names()
+
+        for (i in 0 until itemNumbers.length()) {
+            val tempJSON = data.getJSONObject(itemNumbers.getString(i))
             items.add(
                 Item(
-                    itemNumbers.getInt(counter),
+                    itemNumbers.getInt(i),
+                    tempJSON.getString("name"),
                     tempJSON.getString("description"),
                     tempJSON.getString("colloq"),
                     tempJSON.getString("plaintext"),
@@ -40,10 +37,7 @@ class ItemJSON(JSONStringFile: String) {
 
                 )
             )
-            counter++
         }
-
-         */
 
     }
 
@@ -51,7 +45,7 @@ class ItemJSON(JSONStringFile: String) {
         val fromArr = ArrayList<Int>()
         if (fromString.has("from")) {
             val jsonArr = fromString.getJSONArray("from")
-            for (i in 0..jsonArr.length()) {
+            for (i in 0 until jsonArr.length()) {
                 fromArr.add(jsonArr.get(i).toString().toInt())
             }
         }
@@ -62,7 +56,7 @@ class ItemJSON(JSONStringFile: String) {
         val intoArr = ArrayList<Int>()
         if (intoString.has("into")) {
             val jsonArr = intoString.getJSONArray("into")
-            for (i in 0..jsonArr.length()) {
+            for (i in 0 until jsonArr.length()) {
                 intoArr.add(jsonArr.get(i).toString().toInt())
             }
         }
@@ -85,7 +79,7 @@ class ItemJSON(JSONStringFile: String) {
     private fun processItemGold(goldString: JSONObject) : ItemGold {
         val itemGold = ItemGold(
             goldString.getInt("base"),
-            goldString.getBoolean("purchaseable"),
+            goldString.getBoolean("purchasable"),
             goldString.getInt("total"),
             goldString.getInt("sell")
         )
@@ -94,7 +88,7 @@ class ItemJSON(JSONStringFile: String) {
 
     private fun processItemTags(tagString: JSONArray) : ArrayList<String> {
         val tagArr = ArrayList<String>()
-        for (i in 0..tagString.length()) {
+        for (i in 0 until tagString.length()) {
             tagArr.add(tagString.getString(i))
         }
         return tagArr
@@ -113,6 +107,7 @@ class ItemJSON(JSONStringFile: String) {
 
 class Item (
     var num: Int,
+    var name: String,
     var description: String,
     var colloq: String,
     var plaintext: String,
@@ -123,7 +118,7 @@ class Item (
     var tags: ArrayList<String>,
     var maps: ItemMaps,
     // var stats: ItemStats
-    ) {}
+    )  {}
 
 class ItemImage (
     var full: String,
